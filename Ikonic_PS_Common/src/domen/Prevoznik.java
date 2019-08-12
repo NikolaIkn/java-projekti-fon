@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author Milan
+ * @author Nikola Ikonic
  */
 public class Prevoznik extends Korisnik{
     private List<Vozilo> vozila;

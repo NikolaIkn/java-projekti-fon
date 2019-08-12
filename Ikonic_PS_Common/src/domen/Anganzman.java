@@ -7,7 +7,7 @@ package domen;
 
 /**
  *
- * @author Milan
+ * @author Nikola Ikonic
  */
 public class Anganzman extends OpstiDomenskiObjekat{
     private Posao posao;

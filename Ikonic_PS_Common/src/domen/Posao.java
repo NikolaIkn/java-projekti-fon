@@ -10,7 +10,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Milan
+ * @author Nikola Ikonic
  */
 public class Posao extends OpstiDomenskiObjekat{
     private Firma firma;

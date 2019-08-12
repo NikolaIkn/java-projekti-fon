@@ -7,7 +7,7 @@ package domen;
 
 /**
  *
- * @author Milan
+ * @author Nikola Ikonic
  */
 public class Mesto extends OpstiDomenskiObjekat{
     private Long id;

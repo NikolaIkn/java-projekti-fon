@@ -9,7 +9,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Milan
+ * @author Nikola Ikonic
  */
 public class Korisnik extends OpstiDomenskiObjekat{
     private Long id;

@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author Milan
+ * @author Nikola Ikonic
  */
 public class Firma extends Korisnik {
     private List<Posao> poslovi;

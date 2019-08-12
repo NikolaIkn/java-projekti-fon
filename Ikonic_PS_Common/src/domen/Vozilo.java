@@ -9,7 +9,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Milan
+ * @author Nikola Ikonic
  */
 public class Vozilo extends OpstiDomenskiObjekat{
     private Prevoznik prevoznik;
