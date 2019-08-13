@@ -28,10 +28,15 @@ CREATE TABLE `anganzman` (
   `idFirme` int(11) NOT NULL,
   `rbPosla` int(11) NOT NULL,
   `idPrevoznika` int(11) NOT NULL,
-  `regBrVozila` varchar(45) NOT NULL,
-  PRIMARY KEY (`idFirme`,`rbPosla`,`idPrevoznika`,`regBrVozila`),
+  `regBr` varchar(45) NOT NULL,
+  PRIMARY KEY (`idFirme`,`rbPosla`,`idPrevoznika`,`regBr`),
   KEY `Posao_Anganzman_FK_idx` (`rbPosla`),
-  KEY `Vozilo_Anganzman_FK_idx` (`regBrVozila`)
+  KEY `Vozilo_Anganzman_FK_idx` (`regBr`),
+  KEY `fk_3_idx` (`idPrevoznika`),
+  CONSTRAINT `id_firme_fk_1` FOREIGN KEY (`idFirme`) REFERENCES `firma` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `id_prevoznika_fk_1` FOREIGN KEY (`idPrevoznika`) REFERENCES `prevoznik` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `rb_posla_fk_1` FOREIGN KEY (`rbPosla`) REFERENCES `posao` (`rbPosla`) ON UPDATE CASCADE,
+  CONSTRAINT `reg_br_fk_1` FOREIGN KEY (`regBr`) REFERENCES `vozilo` (`regBr`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -41,6 +46,7 @@ CREATE TABLE `anganzman` (
 
 LOCK TABLES `anganzman` WRITE;
 /*!40000 ALTER TABLE `anganzman` DISABLE KEYS */;
+INSERT INTO `anganzman` VALUES (2,1,1,'BG-123-AS'),(2,1,1,'NS-321-XY');
 /*!40000 ALTER TABLE `anganzman` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +65,7 @@ CREATE TABLE `firma` (
   `aktivan` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,6 +74,7 @@ CREATE TABLE `firma` (
 
 LOCK TABLES `firma` WRITE;
 /*!40000 ALTER TABLE `firma` DISABLE KEYS */;
+INSERT INTO `firma` VALUES (1,'office@drvopromet.rs','agr0pr0m','Agro Promet Zitoradja',1),(2,'mesara@ikonic.rs','krm3n4dl3','Mesara Ikonic',1);
 /*!40000 ALTER TABLE `firma` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,13 +115,18 @@ CREATE TABLE `posao` (
   `cena` int(11) NOT NULL,
   `datumUtovara` datetime NOT NULL,
   `datumIstovara` datetime NOT NULL,
-  `mestoUtovaraId` int(11) NOT NULL,
-  `mestoIstovaraId` int(11) NOT NULL,
+  `mestoUtovara` int(11) NOT NULL,
+  `mestoIstovara` int(11) NOT NULL,
   `opis` varchar(140) DEFAULT NULL,
+  `brojVozila` int(11) DEFAULT NULL,
   PRIMARY KEY (`rbPosla`,`idFirme`),
-  KEY `Mesto_utovara_FK_idx` (`mestoUtovaraId`),
-  KEY `Mesto_istovara_FK_idx` (`mestoIstovaraId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `Mesto_utovara_FK_idx` (`mestoUtovara`),
+  KEY `Mesto_istovara_FK_idx` (`mestoIstovara`),
+  KEY `id_firme_fk_idx` (`idFirme`),
+  CONSTRAINT `id_firme_fk` FOREIGN KEY (`idFirme`) REFERENCES `firma` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `mesto_istovara_id` FOREIGN KEY (`mestoIstovara`) REFERENCES `mesto` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `mesto_utovara_fk` FOREIGN KEY (`mestoUtovara`) REFERENCES `mesto` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,6 +135,7 @@ CREATE TABLE `posao` (
 
 LOCK TABLES `posao` WRITE;
 /*!40000 ALTER TABLE `posao` DISABLE KEYS */;
+INSERT INTO `posao` VALUES (1,2,20000,'2019-08-08 00:00:00','2019-09-09 00:00:00',1,14,'Prevoz krmenadli',2);
 /*!40000 ALTER TABLE `posao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,7 +154,7 @@ CREATE TABLE `prevoznik` (
   `aktivan` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,6 +163,7 @@ CREATE TABLE `prevoznik` (
 
 LOCK TABLES `prevoznik` WRITE;
 /*!40000 ALTER TABLE `prevoznik` DISABLE KEYS */;
+INSERT INTO `prevoznik` VALUES (1,'office@munjatrans.rs','munj4trans','Munja Trans',1);
 /*!40000 ALTER TABLE `prevoznik` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,9 +175,11 @@ DROP TABLE IF EXISTS `vozilo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vozilo` (
-  `idFirme` int(11) NOT NULL,
+  `idPrevoznika` int(11) NOT NULL,
   `regBr` varchar(45) NOT NULL,
-  PRIMARY KEY (`idFirme`,`regBr`)
+  PRIMARY KEY (`idPrevoznika`,`regBr`),
+  UNIQUE KEY `regBr_UNIQUE` (`regBr`),
+  CONSTRAINT `id_prevoznika_fk` FOREIGN KEY (`idPrevoznika`) REFERENCES `prevoznik` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -173,6 +189,7 @@ CREATE TABLE `vozilo` (
 
 LOCK TABLES `vozilo` WRITE;
 /*!40000 ALTER TABLE `vozilo` DISABLE KEYS */;
+INSERT INTO `vozilo` VALUES (1,'BG-123-AS'),(1,'BG-444-FF'),(1,'NI-381-AF'),(1,'NS-321-XY');
 /*!40000 ALTER TABLE `vozilo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -185,4 +202,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-13  1:25:20
+-- Dump completed on 2019-08-13 22:35:17
