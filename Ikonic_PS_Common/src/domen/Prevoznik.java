@@ -17,6 +17,7 @@ public class Prevoznik extends Korisnik{
 
     public Prevoznik(String email, String lozinka, String naziv) {
         super(email, lozinka, naziv);
+        this.vozila = new ArrayList<>();
     }
 
     public Prevoznik(List<Vozilo> vozila, String email, String lozinka, String naziv) {
@@ -38,5 +39,10 @@ public class Prevoznik extends Korisnik{
     
     public void ukloniVozilo(Vozilo vozilo) {
         this.vozila.remove(vozilo);
+    }
+
+    @Override
+    public String vratiTipKorisnika() {
+        return "Prevoznik";
     }
 }

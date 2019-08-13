@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author Nikola Ikonic
  */
-public class Korisnik extends OpstiDomenskiObjekat{
+public abstract class Korisnik extends OpstiDomenskiObjekat{
     private Long id;
     private String email;
     private String lozinka;
@@ -92,6 +92,8 @@ public class Korisnik extends OpstiDomenskiObjekat{
     @Override
     public String toString() {
         return "Korisnik{" + "id=" + id + ", email=" + email + ", lozinka=" + lozinka + ", naziv=" + naziv + ", aktivan=" + aktivan + '}';
-    }   
+    }
+    
+    public abstract String vratiTipKorisnika();
     
 }

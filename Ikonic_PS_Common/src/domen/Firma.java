@@ -41,4 +41,9 @@ public class Firma extends Korisnik {
     public void ukloniPosao(Posao posao) {
         this.poslovi.remove(posao);
     }
+
+    @Override
+    public String vratiTipKorisnika() {
+        return "Firma";
+    }
 }
