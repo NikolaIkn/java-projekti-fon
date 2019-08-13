@@ -21,6 +21,12 @@ public class Posao extends OpstiDomenskiObjekat{
     private Mesto mestoUtovara;
     private Mesto mestoIstovara;
     private String opis;
+    private int brojVozila;
+
+    public Posao() {
+    }
+    
+    
 
     public Posao(Firma firma, int rbPosla, int cena, LocalDate datumUtovara, LocalDate datumIstovara, Mesto mestoUtovara, Mesto mestoIstovara, String opis) {
         this.firma = firma;
@@ -31,7 +37,22 @@ public class Posao extends OpstiDomenskiObjekat{
         this.mestoUtovara = mestoUtovara;
         this.mestoIstovara = mestoIstovara;
         this.opis = opis;
+        this.brojVozila = 1;
     }
+
+    public Posao(Firma firma, int rbPosla, int cena, LocalDate datumUtovara, LocalDate datumIstovara, Mesto mestoUtovara, Mesto mestoIstovara, String opis, int brojVozila) {
+        this.firma = firma;
+        this.rbPosla = rbPosla;
+        this.cena = cena;
+        this.datumUtovara = datumUtovara;
+        this.datumIstovara = datumIstovara;
+        this.mestoUtovara = mestoUtovara;
+        this.mestoIstovara = mestoIstovara;
+        this.opis = opis;
+        this.brojVozila = brojVozila;
+    }
+    
+    
 
     public Firma getFirma() {
         return firma;
@@ -97,6 +118,14 @@ public class Posao extends OpstiDomenskiObjekat{
         this.opis = opis;
     }
 
+    public int getBrojVozila() {
+        return brojVozila;
+    }
+
+    public void setBrojVozila(int brojVozila) {
+        this.brojVozila = brojVozila;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -132,7 +161,7 @@ public class Posao extends OpstiDomenskiObjekat{
         if (!Objects.equals(this.opis, other.opis)) {
             return false;
         }
-        if (!Objects.equals(this.firma, other.firma)) {
+        if (!Objects.equals(this.firma.getId(), other.firma.getId())) {
             return false;
         }
         if (!Objects.equals(this.datumUtovara, other.datumUtovara)) {
@@ -141,10 +170,10 @@ public class Posao extends OpstiDomenskiObjekat{
         if (!Objects.equals(this.datumIstovara, other.datumIstovara)) {
             return false;
         }
-        if (!Objects.equals(this.mestoUtovara, other.mestoUtovara)) {
+        if (!Objects.equals(this.mestoUtovara.getId(), other.mestoUtovara.getId())) {
             return false;
         }
-        if (!Objects.equals(this.mestoIstovara, other.mestoIstovara)) {
+        if (!Objects.equals(this.mestoIstovara.getId(), other.mestoIstovara.getId())) {
             return false;
         }
         return true;
@@ -152,8 +181,6 @@ public class Posao extends OpstiDomenskiObjekat{
 
     @Override
     public String toString() {
-        return "Posao{" + "firma=" + firma + ", rbPosla=" + rbPosla + ", cena=" + cena + ", datumUtovara=" + datumUtovara + ", datumIstovara=" + datumIstovara + ", mestoUtovara=" + mestoUtovara + ", mestoIstovara=" + mestoIstovara + ", opis=" + opis + '}';
-    }
-    
-    
+        return "Posao{" + "firma=" + firma.getNaziv() + ", rbPosla=" + rbPosla + ", cena=" + cena + ", datumUtovara=" + datumUtovara + ", datumIstovara=" + datumIstovara + ", mestoUtovara=" + mestoUtovara.getNaziv() + ", mestoIstovara=" + mestoIstovara.getNaziv() + ", opis=" + opis + ", brojVozila=" + brojVozila + '}';
+    }    
 }

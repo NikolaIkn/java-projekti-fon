@@ -59,7 +59,7 @@ public class Vozilo extends OpstiDomenskiObjekat{
         if (!Objects.equals(this.regBr, other.regBr)) {
             return false;
         }
-        if (!Objects.equals(this.prevoznik, other.prevoznik)) {
+        if (!Objects.equals(this.prevoznik.getId(), other.prevoznik.getId())) {
             return false;
         }
         return true;
@@ -67,8 +67,7 @@ public class Vozilo extends OpstiDomenskiObjekat{
 
     @Override
     public String toString() {
-        return "Vozilo{" + "prevoznik=" + prevoznik + ", regBr=" + regBr + '}';
+        return "Vozilo{" + "prevoznik=" + prevoznik.getNaziv() + ", regBr=" + regBr + '}';
     }
-    
     
 }
