@@ -5,7 +5,6 @@
  */
 package transfer;
 
-import domen.OpstiDomenskiObjekat;
 import java.io.Serializable;
 
 /**
@@ -13,24 +12,24 @@ import java.io.Serializable;
  * @author Nikola Ikonic
  */
 public class TransferObjekatOdgovor implements Serializable{
-    private OpstiDomenskiObjekat odgovor;
+    private Object odgovor;
     private String greska;
     private int status;
 
     public TransferObjekatOdgovor() {
     }
 
-    public TransferObjekatOdgovor(OpstiDomenskiObjekat odgovor, String greska, int status) {
+    public TransferObjekatOdgovor(Object odgovor, String greska, int status) {
         this.odgovor = odgovor;
         this.greska = greska;
         this.status = status;
     }
 
-    public OpstiDomenskiObjekat getOdgovor() {
+    public Object getOdgovor() {
         return odgovor;
     }
 
-    public void setOdgovor(OpstiDomenskiObjekat odgovor) {
+    public void setOdgovor(Object odgovor) {
         this.odgovor = odgovor;
     }
 

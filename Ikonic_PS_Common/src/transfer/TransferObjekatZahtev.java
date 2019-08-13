@@ -1,7 +1,6 @@
 package transfer;
 
 
-import domen.OpstiDomenskiObjekat;
 import java.io.Serializable;
 
 /*
@@ -16,12 +15,12 @@ import java.io.Serializable;
  */
 public class TransferObjekatZahtev implements Serializable{
     private int operacija;
-    private OpstiDomenskiObjekat objekat;
+    private Object objekat; // Ovo se kasnije castuje u sta god
 
     public TransferObjekatZahtev() {
     }
 
-    public TransferObjekatZahtev(int operacija, OpstiDomenskiObjekat objekat) {
+    public TransferObjekatZahtev(int operacija, Object objekat) {
         this.operacija = operacija;
         this.objekat = objekat;
     }
@@ -34,11 +33,11 @@ public class TransferObjekatZahtev implements Serializable{
         this.operacija = operacija;
     }
 
-    public OpstiDomenskiObjekat getObjekat() {
+    public Object getObjekat() {
         return objekat;
     }
 
-    public void setObjekat(OpstiDomenskiObjekat objekat) {
+    public void setObjekat(Object objekat) {
         this.objekat = objekat;
     }
     
