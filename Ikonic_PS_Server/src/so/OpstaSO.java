@@ -6,6 +6,7 @@
 package so;
 
 import domen.OpstiDomenskiObjekat;
+import kontroler.DbKontroler;
 
 /**
  *
@@ -13,16 +14,27 @@ import domen.OpstiDomenskiObjekat;
  */
 public abstract class OpstaSO {
     
-    private void otvoriKonekciju() {}
+    private void otvoriKonekciju() {
+        DbKontroler.getInstance().otvoriKonekciju();
+    }
     
-    private void zatvoriKonekciju() {}
+    private void zatvoriKonekciju() {
+        DbKontroler.getInstance().zatvoriKonekciju();
+    }
     
-    private void potvrdiTransakciju() {}
+    private void potvrdiTransakciju() {
+        DbKontroler.getInstance().potvrdiTransakciju();
+    }
     
-    private void ponistiTransakciju() {}
+    private void ponistiTransakciju() {
+        DbKontroler.getInstance().ponistiTransakciju();
+    }
     
-    // Ova mozda ne treba?
-    protected void proveriPreduslov() {}
+    // Ovo mozda ni ne treba, ako kojim slucajem zatreba negde overrideuj u 
+    // child klasi
+    protected void proveriPreduslov() {
+        System.out.println("Sve je kul");
+    }
     
     protected abstract void izvrsiOperaciju(OpstiDomenskiObjekat o) throws Exception;
     

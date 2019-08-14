@@ -5,6 +5,9 @@
  */
 package db;
 
+import java.sql.Connection;
+import util.Util;
+
 /**
  *
  * @author Nikola Ikonic
@@ -12,4 +15,21 @@ package db;
 public class DatabaseBroker {
     
     // TODO: Implementiraj ovo
+    
+    private Connection conn;
+    
+    public DatabaseBroker() {}
+    
+    public void otvoriKonekciju() {
+        // String url = Util.getInstance().getUrl();
+        // ...
+    }
+    
+    public void zatvoriKonekciju() {}
+    
+    public void potvrdiTransakciju() {}
+    
+    public void ponistiTransakciju() {}
+    
+    /** ostatak operacija */
 }
