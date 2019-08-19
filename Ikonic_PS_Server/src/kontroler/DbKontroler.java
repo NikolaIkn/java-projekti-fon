@@ -6,6 +6,7 @@
 package kontroler;
 
 import db.DatabaseBroker;
+import java.sql.SQLException;
 
 /**
  *
@@ -27,19 +28,19 @@ public class DbKontroler {
         return instance;
     }
     
-    public void otvoriKonekciju() {
+    public void otvoriKonekciju() throws Exception {
         db.otvoriKonekciju();
     }
     
-    public void zatvoriKonekciju() {
+    public void zatvoriKonekciju() throws SQLException {
         db.zatvoriKonekciju();
     }
     
-    public void potvrdiTransakciju() {
+    public void potvrdiTransakciju() throws SQLException {
         db.potvrdiTransakciju();
     }
     
-    public void ponistiTransakciju() {
+    public void ponistiTransakciju() throws SQLException {
         db.ponistiTransakciju();
     }
     

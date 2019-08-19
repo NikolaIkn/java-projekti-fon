@@ -6,6 +6,7 @@
 package so;
 
 import domen.OpstiDomenskiObjekat;
+import java.sql.SQLException;
 import kontroler.DbKontroler;
 
 /**
@@ -14,19 +15,19 @@ import kontroler.DbKontroler;
  */
 public abstract class OpstaSO {
     
-    private void otvoriKonekciju() {
+    private void otvoriKonekciju() throws Exception {
         DbKontroler.getInstance().otvoriKonekciju();
     }
     
-    private void zatvoriKonekciju() {
+    private void zatvoriKonekciju() throws SQLException {
         DbKontroler.getInstance().zatvoriKonekciju();
     }
     
-    private void potvrdiTransakciju() {
+    private void potvrdiTransakciju() throws SQLException {
         DbKontroler.getInstance().potvrdiTransakciju();
     }
     
-    private void ponistiTransakciju() {
+    private void ponistiTransakciju() throws SQLException {
         DbKontroler.getInstance().ponistiTransakciju();
     }
     

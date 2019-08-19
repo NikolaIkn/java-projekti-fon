@@ -7,6 +7,8 @@ package db;
 
 import java.sql.Connection;
 import util.Util;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -20,16 +22,28 @@ public class DatabaseBroker {
     
     public DatabaseBroker() {}
     
-    public void otvoriKonekciju() {
-        // String url = Util.getInstance().getUrl();
-        // ...
+    public void otvoriKonekciju() throws Exception {
+        String url = Util.getInstance().getURL();
+        String user = Util.getInstance().getUser();
+        String pass = Util.getInstance().getPassword();
+        
+        conn = DriverManager.getConnection(url, user, pass);
+        conn.setAutoCommit(false);
     }
     
-    public void zatvoriKonekciju() {}
+    public void zatvoriKonekciju() throws SQLException {
+        conn.close();
+    }
     
-    public void potvrdiTransakciju() {}
+    public void potvrdiTransakciju() throws SQLException {
+        conn.commit();
+    }
     
-    public void ponistiTransakciju() {}
+    public void ponistiTransakciju() throws SQLException {
+        conn.rollback();
+    }
+    
+    
     
     /** ostatak operacija */
 }

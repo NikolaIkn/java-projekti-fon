@@ -31,7 +31,8 @@ public class KontrolerSistemskihOperacija {
     }
     
     public TransferObjekatOdgovor obradiSistemskuOperaciju(TransferObjekatZahtev zahtev) {
-        // TODO: Implementiraj logiku!
+        // TODO: Implementiraj logiku!2
+        
         return new TransferObjekatOdgovor(null, "Nisi implementirao ovo", Konstante.GRESKA);
     }
     

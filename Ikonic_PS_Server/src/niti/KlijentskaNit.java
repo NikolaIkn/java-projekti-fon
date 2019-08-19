@@ -61,4 +61,9 @@ public class KlijentskaNit extends Thread{
             ex.printStackTrace();
         }
     }
+    
+    public void zatvoriNit(){
+        kraj = true;
+        this.interrupt();
+    }
 }

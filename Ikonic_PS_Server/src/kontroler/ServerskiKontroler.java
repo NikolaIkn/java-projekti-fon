@@ -1,5 +1,6 @@
 package kontroler;
 
+import db.DatabaseBroker;
 import niti.ServerskaNit;
 
 /*
@@ -16,6 +17,7 @@ public class ServerskiKontroler {
     
     public static ServerskiKontroler instance;
     private ServerskaNit server;
+    private DatabaseBroker db;
     
     private ServerskiKontroler() {
     }
@@ -32,5 +34,10 @@ public class ServerskiKontroler {
             server = new ServerskaNit();
         }
         server.start();
+        db = new DatabaseBroker();
+    }
+    
+    public void zaustaviServer(){
+        server.zatvoriServer();
     }
 }
