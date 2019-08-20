@@ -1,6 +1,7 @@
 package kontroler;
 
 import db.DatabaseBroker;
+import domen.OpstiDomenskiObjekat;
 import niti.ServerskaNit;
 
 /*
@@ -39,5 +40,14 @@ public class ServerskiKontroler {
     
     public void zaustaviServer(){
         server.zatvoriServer();
+    }
+    
+    public void insert(OpstiDomenskiObjekat o) throws Exception {
+        try{
+            int i = db.insert(o);
+            if (i !=1) {
+                throw new Exception("Objekat nije mogao da se ubaci u bazu");
+            }
+        }
     }
 }

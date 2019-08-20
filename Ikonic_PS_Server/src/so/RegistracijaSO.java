@@ -6,6 +6,7 @@
 package so;
 
 import domen.OpstiDomenskiObjekat;
+import kontroler.ServerskiKontroler;
 
 /**
  *
@@ -15,7 +16,7 @@ public class RegistracijaSO extends OpstaSO {
 
     @Override
     protected void izvrsiOperaciju(OpstiDomenskiObjekat o) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ServerskiKontroler.getInstance().insert(o);//To change body of generated methods, choose Tools | Templates.
     }
     
 }

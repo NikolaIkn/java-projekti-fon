@@ -1,5 +1,6 @@
 package kontroler;
 
+import so.OpstaSO;
 import transfer.TransferObjekatOdgovor;
 import transfer.TransferObjekatZahtev;
 import util.Konstante;
@@ -32,7 +33,16 @@ public class KontrolerSistemskihOperacija {
     
     public TransferObjekatOdgovor obradiSistemskuOperaciju(TransferObjekatZahtev zahtev) {
         // TODO: Implementiraj logiku!2
+        TransferObjekatOdgovor odgovor = new TransferObjekatOdgovor();
+        OpstaSO so;
         
+        switch (zahtev.getOperacija()){
+            case Konstante.REGISTRACIJA: {
+                try{
+                    so = new Regi
+                }
+            }
+        }
         return new TransferObjekatOdgovor(null, "Nisi implementirao ovo", Konstante.GRESKA);
     }
     

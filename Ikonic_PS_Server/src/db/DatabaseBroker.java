@@ -5,6 +5,7 @@
  */
 package db;
 
+import domen.OpstiDomenskiObjekat;
 import java.sql.Connection;
 import util.Util;
 import java.sql.DriverManager;
@@ -25,7 +26,7 @@ public class DatabaseBroker {
     public void otvoriKonekciju() throws Exception {
         String url = Util.getInstance().getURL();
         String user = Util.getInstance().getUser();
-        String pass = Util.getInstance().getPassword();
+        String pass = Util.getInstance().getPassword(); 
         
         conn = DriverManager.getConnection(url, user, pass);
         conn.setAutoCommit(false);
@@ -43,6 +44,9 @@ public class DatabaseBroker {
         conn.rollback();
     }
     
+    public void insert(OpstiDomenskiObjekat o) {
+        String query = "insert into " + o.vratiNazivTabele() + o.vratiAtributZaInsert() + " valuse(" + o.vratiVrednostiZaInsert() + ")";
+    }
     
     
     /** ostatak operacija */

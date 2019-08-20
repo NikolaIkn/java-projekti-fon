@@ -6,6 +6,7 @@
 package kontroler;
 
 import db.DatabaseBroker;
+import domen.OpstiDomenskiObjekat;
 import java.sql.SQLException;
 
 /**
@@ -44,5 +45,8 @@ public class DbKontroler {
         db.ponistiTransakciju();
     }
     
+    public void insert(OpstiDomenskiObjekat o) {
+        db.insert(o);
+    }
     /** insert, update, ... */
 }
